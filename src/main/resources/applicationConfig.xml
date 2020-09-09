@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:component-scan base-package="com"/>
+
+    <bean name="simpleCalculatorAutowire" class="com.via_xml_autowire.SimpleCalculator">
+    </bean>
+
+    <bean name="geometryCalculatorAutowire" class="com.via_xml_autowire.GeometryCalculator"
+          autowire="byType">
+    </bean>
+
+    <bean name="mathematicalCalculatorAutowire" class="com.via_xml_autowire.MathematicalCalculator"
+          autowire="byType">
+    </bean>
+
+    <bean name="simpleCalculatorXml" class="com.via_xml.SimpleCalculator">
+    </bean>
+
+    <bean name="mathematicalCalculatorXml" class="com.via_xml.MathematicalCalculator">
+        <constructor-arg name="geometryCalculator" ref="geometryCalculatorXml"/>
+    </bean>
+
+    <bean name="geometryCalculatorXml" class="com.via_xml.GeometryCalculator">
+        <constructor-arg name="simple" ref="simpleCalculatorXml"/>
+    </bean>
+
+</beans>
